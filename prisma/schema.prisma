@@ -1,0 +1,88 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                Int                 @id @default(autoincrement())
+  name              String
+  email             String              @unique
+  chatSessions       ChatSession[] 
+  sharedChatSessions SharedChatSession[]
+  messages          Message[]
+  accounts          Account[]
+  sessions          Session[]
+
+  @@map("users")
+}
+
+model Account {
+  id                 Int     @id @default(autoincrement())
+  userId             Int     @map("user_id")
+  type               String
+  provider           String
+  providerAccountId  String  @map("provider_account_id")
+  refresh_token      String?
+  access_token       String?
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model ChatSession {
+  id       Int       @id @default(autoincrement())
+  userId   Int
+  user     User      @relation(fields: [userId], references: [id])
+  messages Message[]
+
+  @@map("chat_sessions")
+}
+
+model Message {
+  id                  Int                @id @default(autoincrement())
+  content             String
+  timestamp           DateTime           @default(now())
+  sender              User               @relation(fields: [senderId], references: [id])
+  senderId            Int 
+  chatSession         ChatSession        @relation(fields: [chatSessionId], references: [id]) 
+  chatSessionId       Int
+  sharedChatSessions   SharedChatSession? @relation(fields: [sharedChatSessionId], references: [id])
+  sharedChatSessionId Int?
+
+  @@map("messages")
+}
+
+model SharedChatSession {
+  id       Int       @id @default(autoincrement())
+  userId   Int
+  user     User      @relation(fields: [userId], references: [id])
+  messages Message[]
+
+  @@map("shared_chat_sessions")
+}
+
+model Session {
+  id           Int      @id @default(autoincrement())
+  sessionToken String   @unique @map("session_token")
+  userId       Int      @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
