@@ -1,7 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import PlusIcon from './Svg/PlusIcon'
+import { PlusIcon } from './ui/icons'
 import SendIcon from './Svg/SendIcon'
 import Textarea from 'react-textarea-autosize'
 import { Tooltip } from 'react-tooltip'

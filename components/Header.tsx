@@ -44,7 +44,6 @@ export default function Header({ setDataState, dataState }: HeaderProps) {
         if (top < -height) {
           top = -height;
         }
-        console.log(currentScrollPos + top)
         setNavbarTop(currentScrollPos + top);
       } else if (currentScrollPos < lastScrollPosition) {
         const { top } = headerRef.current?.getBoundingClientRect() as DOMRect;
@@ -59,10 +58,8 @@ export default function Header({ setDataState, dataState }: HeaderProps) {
   }
 
   try {
-    // value = localStorage.getItem("favoriteNumber") || ""
     window.addEventListener('scroll', handleScroll, { passive: true });
   } catch (error) { }
-
 
   return (
     <header ref={headerRef} style={{ top: `${navbarTop}px` }} className={` ${position} h-16 left-0 w-full lg flex bg-white justify-between items-center p-4 border-b border-[#E5E7EB]`}>
@@ -70,7 +67,7 @@ export default function Header({ setDataState, dataState }: HeaderProps) {
         <SheetTrigger className='px-1 lg:hidden'>
           <MenuIcon color='black' />
         </SheetTrigger>
-        <SheetContent side='left' className='w-[300px] lg:inset-y-0 lg:top-16'>
+        <SheetContent side='left' className='sidebar w-[300px] lg:inset-y-0 lg:top-16'>
           <SheetHeader>
             <div className='relative'>
               <MessageIcon className='absolute left-2 top-[11px]' />

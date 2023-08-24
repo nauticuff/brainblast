@@ -10,7 +10,6 @@ export default function SignIn() {
 
   async function clientGetProviders() {
     const providers = await getProviders();
-    console.log(providers)
     return providers;
   }
 

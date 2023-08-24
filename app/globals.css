@@ -19,7 +19,7 @@
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
  
-    --muted: 210 40% 96.1%;
+    --muted: 240 4.8% 95.9%;
     --muted-foreground: 215.4 16.3% 46.9%;
  
     --accent: 210 40% 96.1%;
@@ -28,7 +28,7 @@
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
+    --border: 240 5.9% 90%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
  
@@ -121,4 +121,29 @@
   background: #ffffff;
   border-radius: 100vw;
   margin-block: -0.3rem;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  border-radius: 100vw;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb {
+  background: #bfbfbf;
+  border-radius: 100vw;
+  border: 0.1rem solid #ffffff;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a5a5a5;
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-thumb:active {
+  background: rgb(109, 109, 109);
+}
+
+.sidebar-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-radius: 100vw;
+  margin-block: -2.3rem;
 }
