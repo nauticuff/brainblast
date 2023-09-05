@@ -89,7 +89,7 @@ export default function SignIn() {
               className="bg-slate-500 text-white py-2 px-3"
               onClick={() => handleCredentials(username, password)}
             >
-              //github logo here
+              {/*github logo here*/}
               Sign In with Credentials
             </button>
             :
@@ -97,7 +97,7 @@ export default function SignIn() {
               className="bg-slate-500 text-white py-2 px-3"
               onClick={() => handleCredentials(username, password)}
             >
-              //spinner here
+              {/* spinner here */}
               Sign In with Credentials
             </button>
           }

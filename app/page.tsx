@@ -29,14 +29,17 @@ export default function Home() {
 
   const exampleMessages = [
     {
+      id: 1,
       heading: 'Explain technical concepts',
       message: 'What is a "serverless function"?'
     },
     {
+      id: 2,
       heading: 'Summarize an article',
       message: 'Summarize the following article for a 2nd grader: \n'
     },
     {
+      id: 3,
       heading: 'Draft an email',
       message: 'Draft an email to my boss about the following: \n'
     }
@@ -52,7 +55,7 @@ export default function Home() {
           </div>
           <div className='sidebar-scrollbar flex-1 overflow-auto'>
             {exampleMessages.map((item) => (
-              <div className='px-4'>
+              <div key={item.id} className='px-4'>
                 <p className='text-sm'>{item.heading.slice(0, 10) + '...'}</p>
               </div>
             ))}
